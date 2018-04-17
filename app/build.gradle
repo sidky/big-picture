@@ -1,0 +1,83 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: "de.mannodermaus.android-junit5"
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.github.sidky.bigpicture"
+        minSdkVersion 21
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    testOptions {
+        junitPlatform {
+            filters {
+                engines {
+                    include 'spek'
+                }
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation deps.kotlin.stdlib
+    implementation deps.support.appcompat
+    implementation deps.constraint_layout
+
+    implementation deps.ktx
+
+    implementation deps.timber
+
+    implementation deps.rxjava2
+    implementation deps.rxandroid
+
+    implementation deps.okhttp.runtime
+    implementation deps.okhttp.logging_interceptor
+
+    implementation deps.lifecycle.runtime
+    implementation deps.lifecycle.extensions
+    kapt deps.lifecycle.compiler
+
+    implementation deps.room.runtime
+    kapt deps.room.compiler
+    implementation deps.room.rxjava2
+
+    implementation deps.koin
+
+    implementation deps.stetho.runtime
+    implementation deps.stetho.okhttp
+
+    implementation deps.jsoup
+
+    testImplementation deps.kotlin.reflection
+    testImplementation junit5.unitTests()
+    testImplementation junit5.parameterized()
+    testCompileOnly junit5.unitTestsRuntime()
+    androidTestImplementation junit5.instrumentationTests()
+
+    testImplementation(deps.spek.api) {
+        exclude group: groups.kotlin
+    }
+
+    testImplementation(deps.spek.engine) {
+        exclude group: groups.kotlin
+        exclude group: groups.junit_platform
+    }
+
+    testImplementation deps.robolectric
+}
