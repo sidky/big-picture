@@ -3,6 +3,7 @@ package com.github.sidky.bigpicture
 import android.app.Application
 import com.facebook.stetho.Stetho
 import com.github.sidky.bigpicture.common.constantsModule
+import com.github.sidky.bigpicture.di.viewModule
 import com.github.sidky.bigpicture.network.networkModule
 import com.github.sidky.bigpicture.xml.xmlModule
 import org.koin.android.ext.android.startKoin
@@ -12,7 +13,7 @@ class BigPictureApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        startKoin(this, arrayListOf(constantsModule, networkModule, xmlModule))
+        startKoin(this, arrayListOf(constantsModule, networkModule, xmlModule, viewModule))
 
         initializeStetho()
 

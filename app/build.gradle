@@ -13,6 +13,12 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        kapt {
+            arguments {
+                arg("room.schemaLocation", "$projectDir/schemas".toString())
+            }
+        }
     }
     buildTypes {
         release {
@@ -57,7 +63,8 @@ dependencies {
     kapt deps.room.compiler
     implementation deps.room.rxjava2
 
-    implementation deps.koin
+    implementation deps.koin.core
+    testImplementation deps.koin.test
 
     implementation deps.stetho.runtime
     implementation deps.stetho.okhttp

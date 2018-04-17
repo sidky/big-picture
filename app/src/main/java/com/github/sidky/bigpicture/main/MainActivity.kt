@@ -1,10 +1,10 @@
-package com.github.sidky.bigpicture
+package com.github.sidky.bigpicture.main
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.github.sidky.bigpicture.R
 import com.github.sidky.bigpicture.common.Constants
 import com.github.sidky.bigpicture.network.FeedHelper
-import com.github.sidky.bigpicture.network.NetworkHelper
 import com.github.sidky.bigpicture.xml.FeedParser
 import org.koin.android.ext.android.inject
 import timber.log.Timber
